@@ -18,11 +18,11 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"><link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"><link href=\"/estatico/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\"></head><body class=\"bg-light\">");
+  out.w("<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"> <link href=\"/estatico/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\"></head><body class=\"bg-light\">");
 
   component_globals_tag({}, out);
 
-  out.w("<div class=\"container\"><form action=\"/issues\" method=\"post\" class=\"form-horizontal\"><h1 class=\"bd-title\">Cadastro de Chamados</h1>");
+  out.w("<nav class=\"navbar navbar-inverse\"><div class=\"navbar-header\"><a class=\"navbar-brand\" href=\"#\">Totvs Chamados</a></div></nav><div class=\"container\"><form action=\"/issues\" method=\"post\" class=\"form-horizontal\"><h1 class=\"bd-title\">Cadastro de Chamados</h1>");
 
   if (data.issue._id) {
     out.w("<div><input type=\"hidden\" name=\"_method\" value=\"PUT\"><input type=\"hidden\" id=\"id\" name=\"id\"" +
@@ -36,29 +36,29 @@ function render(input, out, __component, component, state) {
     marko_attr("value", "" + data.issue.description) +
     " placeholder=\"Informe a descrição\" class=\"form-control\" maxlength=\"30\"></div><div class=\"form-group row\"><label for=\"role\">Solicitante:</label><select class=\"form-control\" name=\"userReporter\" id=\"userReporter\">");
 
-  var for__21 = 0;
+  var for__23 = 0;
 
   marko_forEach(data.users, function(user) {
-    var keyscope__22 = "[" + ((for__21++) + "]");
+    var keyscope__24 = "[" + ((for__23++) + "]");
 
     out.w("<option" +
-      marko_attr("selected", data.issue.userReporter === user.name) +
+      marko_attr("selected", data.issue.userReporter === user.username) +
       "> " +
-      marko_escapeXml(user.name) +
+      marko_escapeXml(user.username) +
       " </option>");
   });
 
   out.w("</select></div><div class=\"form-group row\"><label for=\"userAssign\">Atribuir para:</label><select class=\"form-control\" name=\"userAssign\" id=\"userAssign\">");
 
-  var for__27 = 0;
+  var for__29 = 0;
 
   marko_forEach(data.users, function(user) {
-    var keyscope__28 = "[" + ((for__27++) + "]");
+    var keyscope__30 = "[" + ((for__29++) + "]");
 
     out.w("<option" +
-      marko_attr("selected", data.issue.userAssign === user.name) +
+      marko_attr("selected", data.issue.userAssign === user.username) +
       "> " +
-      marko_escapeXml(user.name) +
+      marko_escapeXml(user.username) +
       " </option>");
   });
 
@@ -72,7 +72,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "39");
+  await_reorderer_tag({}, out, __component, "41");
 
   out.w("</body></html>");
 }

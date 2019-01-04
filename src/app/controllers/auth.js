@@ -54,7 +54,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(username, password, callback) {
-    
+    console.log(username);
     User.findOne({ username: username }, function (err, user) {
       
       if (err) { return callback(err); }
@@ -73,7 +73,7 @@ passport.use(new LocalStrategy({
         if (!isMatch) { return callback(null, false); }
 
         // Success
-       
+        console.log("Success");
         return callback(null, user);
       });
     });
@@ -122,4 +122,5 @@ passport.use(new BearerStrategy(
 exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], { session : false });
 exports.isClientAuthenticated = passport.authenticate('client-basic', { session : false });
 exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });
+exports.isLocalAuthenticated = passport.authenticate('local', { session: false ,successReturnToOrRedirect: '/', failureRedirect: '/login'});
 

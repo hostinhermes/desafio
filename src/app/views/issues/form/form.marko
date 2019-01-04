@@ -36,7 +36,7 @@
                 <div class="form-group row">
                     <label for="role">Solicitante:</label>
                     <select class="form-control" name="userReporter" id="userReporter" >
-                        <option for (user in data.users) selected=(data.issue.userReporter === user.name) > ${user.name} </option>
+                        <option for (user in data.users) selected=(data.issue.userReporter === user.username) > ${user.username} </option>
                                         
                     </select>
                    
@@ -45,7 +45,7 @@
                 <div class="form-group row">
                     <label for="userAssign">Atribuir para:</label>
                      <select class="form-control" name="userAssign" id="userAssign" >
-                        <option  for (user in data.users) selected=(data.issue.userAssign === user.name)> ${user.name} </option>
+                        <option  for (user in data.users) selected=(data.issue.userAssign === user.username)> ${user.username} </option>
                                         
                     </select>
                 </div>

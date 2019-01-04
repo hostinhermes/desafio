@@ -10,7 +10,7 @@ var authController = require('../controllers/auth');
 
 module.exports = (app) => {
     
-    app.get('/', authController.isAuthenticated, function(req, resp) {
+    app.get('/', authController.isAuthenticated, function(req, resp) {        
         resp.marko(indexTemplate);
     });
 
@@ -19,8 +19,8 @@ module.exports = (app) => {
     });
 
     app.post('/login', authController.isAuthenticated, function(req, resp) {
+        resp.marko(indexTemplate);
        
-        resp.redirect('/?username='+req.body.username+'&password='+req.body.password);
     });
 
     app.get('/install', function(req, resp) {
@@ -35,9 +35,9 @@ module.exports = (app) => {
            
             user.save(function (err) {
                 console.log(err);
-              });
+            });
 
-              console.log(user._id);
+              
             var client = new Client({
                 name: "Client da Aplicação de Chamados",
                 id: "id-totvs-chamados",           
@@ -48,9 +48,9 @@ module.exports = (app) => {
            
             client.save(function (err) {
                 console.log(err);
-              });
+            });
         }
-        resp.send("Adicionado app client  e usuario default");
+        resp.send("Adicionado app client  e usuário admin!!");
     });
     
     app.get('/users', authController.isAuthenticated, function(req, resp) {
