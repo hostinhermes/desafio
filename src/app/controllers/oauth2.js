@@ -60,8 +60,6 @@ server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, ca
   code.save(function(err) {
     if (err) { return callback(err); }
 
-    console.log(code.value);
-
     callback(null, code.value);
   });
 }));
@@ -75,11 +73,7 @@ server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, ca
 server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, callback) {
   
   Code.findOne({ value: code }, function (err, authCode) {
-    console.log("authCode " +authCode);
-    console.log("erro " +err);
-    console.log(client);
-    console.log("client_id " +client._id.toString() + ' | '+ authCode.clientId);
-    console.log("redirectUri " +redirectUri+ ' | '+authCode.redirectUri);
+    
 
     if (err) { return callback(err); }
     if (authCode === undefined) { return callback(null, false); }
@@ -87,7 +81,7 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
     if (redirectUri !== authCode.redirectUri) { return callback(null, false); }
 
     // Delete auth code now that it has been used
-    console.log("authCode " +authCode);
+   
     authCode.remove(function (err) {
       if(err) { return callback(err); }
 
@@ -97,11 +91,11 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
         clientId: authCode.clientId,
         userId: authCode.userId
       });
-      console.log("Token " +token);
+      
       // Save the access token and check for errors
       token.save(function (err) {
         if (err) { return callback(err); }
-        console.log("Token " +token);
+       
         callback(null, token);
       });
     });
@@ -126,7 +120,7 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
 
 exports.authorization = [
   server.authorization(function(clientId, redirectUri, callback) {
-    console.log(clientId);
+    
     Client.findOne({ id: clientId }, function (err, client) {
       if (err) { return callback(err); }
 
