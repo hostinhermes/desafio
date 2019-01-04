@@ -17,10 +17,10 @@ http://localhost:3000 - será solicitado o usuario/senha e após será feito o r
 - As rotas são protegidas por autenticação de usuário e senha (basic-authentication), podendo também usar a estratégia token bearer do oauth2 (esta opção foi implementada apenas no server, não utilizei no app web, contudo é possivel testar via postman)
 
 # Estrutura do Projeto
-/src -> /app
-           -> /controllers  Contém a camada de controller da aplicação (app middleware)
-           -> /models Contém as entidades utilizadas nos projetos (User, Issue, etc)
-           -> /public Contém os arquivos estáticos do app web (js, css, etc)
-           -> /routes Contém as rotas(apis) do app middleware
-           -> /views Contém as páginas do app web
-        /config Contém os arquivos com configuração de banco e do servidor
+/src  - /app
+           - /controllers  Contém a camada de controller da aplicação (app middleware)
+           - /models Contém as entidades utilizadas nos projetos (User, Issue, etc)
+           - /public Contém os arquivos estáticos do app web (js, css, etc)
+           - /routes Contém as rotas(apis) do app middleware
+           - /views Contém as páginas do app web
+      - /config Contém os arquivos com configuração de banco e do servidor
