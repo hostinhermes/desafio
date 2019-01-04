@@ -1,0 +1,55 @@
+<html>
+    <head>
+            <meta http-equiv="content-type" content="text/html; charset=utf-8" />            
+            <link href="/estatico/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+    </head>
+    <body class="bg-light">
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Totvs Chamados</a>
+            </div>
+        </nav>
+        <div class="container">
+           
+        
+            <form action="/users" method="post" class="form-horizontal">
+                 <h1 class="bd-title">Cadastro de Usuários</h1>
+                <if(data.user._id)>
+                <div>
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" id="id" name="id" value="${data.user._id}" />
+                </div>
+                </if>
+
+                <div class="form-group row">
+                    <label for="username">Nome Usuário:</label>
+                    <input type="text" id="username" name="username" value="${data.user.username}" placeholder="Informe o nome de usuário" class="form-control" maxlength="30"/>
+                </div>
+
+                <div class="form-group row">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" value="${data.user.password}" placeholder="Informe a senha" class="form-control" maxlength="30"/>
+                </div>
+                            
+                <div class="form-group row">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" value="${data.user.email}" placeholder="Informe o email" class="form-control" maxlength="30"/>
+                </div>
+                
+
+                <div class="form-group row">
+                    <label for="role">Função:</label>
+                    <input type="text" id="role" name="role" value="${data.user.role}" placeholder="Informe a função" class="form-control" maxlength="30"/>
+                </div>
+
+                <div class="form-group row">
+                    <input type="submit" value="Salvar" class="btn btn-primary btn-lg"/>
+                    <a href="/users" class="btn btn-secondary btn-lg">Voltar</a>
+                </div>
+
+                
+            </form>
+        </div>
+        
+    </body>
+</html>

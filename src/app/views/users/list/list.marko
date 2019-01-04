@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />        
+        <link href="/estatico/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+       
+    </head>
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Totvs Chamados</a>
+        </div>
+    </nav>
+    <body class="bg-light">
+    
+    
+         <div class="container">
+                 <h1> Listagem de Usuários </h1>
+
+                <table id="users" class="table">
+                    <tr>
+                        <th >ID</th>
+                        <th >Nome</th>               
+                        <th >Email</th> 
+                        <th >Função</th> 
+                        <th >Data de Cadastro</th> 
+                        <th >Data de  Atualização</th>                               
+                        <th >Editar</th>
+                        <th >Remover</th>
+                    </tr>
+                    <tr id="user_${user.id}" for (user in data.users)>
+                        <td>${user._id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.role}</td>                                           
+                        <td>${user.createDate.toLocaleDateString()} </td>
+                         <if(user.updateDate)>
+                            <td>${user.updateDate.toLocaleDateString()} </td>
+                         </if>
+                        <else>
+                            <td> </td>
+                        </else>
+                        <td><a href="/users/form/${user._id}">Editar</a></td>
+                        <td><a href="#" data-ref="${user._id}" data-type="remocao">Remover</a></td>
+                    </tr>
+                </table>
+      
+                <a href="/users/form" class="btn btn-primary btn-lg">Incluir</a>
+                <a href="/" class="btn btn-secondary btn-lg">Voltar</a>
+         </div>
+       
+         
+        <script src="/estatico/js/remove-user.js" />
+        
+    </body>
+</html>

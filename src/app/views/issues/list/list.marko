@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />       
+        <link href="/estatico/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+       
+    </head>
+    <body class="bg-light">
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Totvs Chamados</a>
+            </div>
+        </nav>
+    
+         <div class="container">
+                 <h1> Listagem de Chamados </h1>
+
+                <table id="issues" class="table">
+                    <tr>
+                        <th >ID</th>
+                        <th >Titulo</th>               
+                        <th >Descrição</th> 
+                        <th >Solicitante</th> 
+                        <th >Atribuido</th>                        
+                        <th >Status</th>                               
+                        <th >Editar</th>
+                        <th >Remover</th>
+                    </tr>
+                    <tr id="issue_${issue.id}" for (issue in data.issues)>
+                        <td>${issue._id}</td>
+                        <td>${issue.title}</td>
+                        <td>${issue.description}</td>
+                        <td>${issue.userReporter}</td> 
+                        <td>${issue.userAssign}</td> 
+                        <td>${issue.status}</td> 
+                        <td><a href="/issues/form/${issue._id}">Editar</a></td>
+                        <td><a href="#" data-ref="${issue._id}" data-type="remocao">Remover</a></td>
+                    </tr>
+                </table>
+      
+                <a href="/issues/form" class="btn btn-primary btn-lg">Incluir</a>
+                <a href="/" class="btn btn-secondary btn-lg">Voltar</a>
+         </div>
+       
+         
+        <script src="/estatico/js/remove-issue.js" />
+        
+    </body>
+</html>

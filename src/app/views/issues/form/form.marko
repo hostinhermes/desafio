@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />            
+        <link href="/estatico/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+    </head>
+    <body class="bg-light">
+        <nav class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Totvs Chamados</a>
+                </div>
+        </nav>
+        <div class="container">
+           
+        
+            <form action="/issues" method="post" class="form-horizontal">
+                 <h1 class="bd-title">Cadastro de Chamados</h1>
+                <if(data.issue._id)>
+                <div>
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" id="id" name="id" value="${data.issue._id}" />
+                </div>
+                </if>
+                
+
+                <div class="form-group row">
+                    <label for="nome">Titulo:</label>
+                    <input type="text" id="title" name="title" value="${data.issue.title}" placeholder="Informe o título" class="form-control" maxlength="30"/>
+                </div>
+            
+                <div class="form-group row">
+                    <label for="description">Descrição:</label>
+                    <input type="text" id="description" name="description" value="${data.issue.description}" placeholder="Informe a descrição" class="form-control" maxlength="30"/>
+                </div>
+                
+
+                <div class="form-group row">
+                    <label for="role">Solicitante:</label>
+                    <select class="form-control" name="userReporter" id="userReporter" >
+                        <option for (user in data.users) selected=(data.issue.userReporter === user.name) > ${user.name} </option>
+                                        
+                    </select>
+                   
+                </div>
+
+                <div class="form-group row">
+                    <label for="userAssign">Atribuir para:</label>
+                     <select class="form-control" name="userAssign" id="userAssign" >
+                        <option  for (user in data.users) selected=(data.issue.userAssign === user.name)> ${user.name} </option>
+                                        
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status" name="status" > 
+                        <option selected=(data.issue.status === 'Aberto')>Aberto</option>
+                        <option selected=(data.issue.status === 'Atribuido')>Atribuido</option>
+                        <option selected=(data.issue.status === 'Encerrado')>Encerrado</option>                   
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <input type="submit" value="Salvar" class="btn btn-primary btn-lg"/>
+                     
+                    <a href="/issues" class="btn btn-secondary btn-lg">Voltar</a>
+                </div>
+               
+
+                
+            </form>
+        </div>
+        
+    </body>
+</html>
